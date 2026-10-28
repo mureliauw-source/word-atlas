@@ -1,5 +1,7 @@
 node_modules/
 dist/
+dist-server/
+deploy/data/
 .local/
 .env
 .env.*
@@ -9,3 +11,11 @@ output/
 .DS_Store
 .playwright-cli/
 *.tsbuildinfo
+__pycache__/
+*.py[cod]
+
+# Local account databases and logs
+.data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm

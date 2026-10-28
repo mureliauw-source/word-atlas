@@ -1,5 +1,5 @@
 /* Word Atlas offline cache: app shell network-first, everything else cache-first. */
-const VERSION = "atlas-v1";
+const VERSION = "atlas-accounts-v1";
 const SHELL = `${VERSION}-shell`;
 const MEDIA = `${VERSION}-media`;
 
@@ -8,7 +8,13 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) => Promise.all(keys.filter((k) => !k.startsWith(VERSION)).map((k) => caches.delete(k))))
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((k) => !k.startsWith(VERSION))
+            .map((k) => caches.delete(k)),
+        ),
+      )
       .then(() => self.clients.claim()),
   );
 });
@@ -23,8 +29,10 @@ self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET" || req.headers.has("range")) return;
   const url = new URL(req.url);
-  if (url.origin !== location.origin) return;
-  const isShell = req.mode === "navigate" || url.pathname.endsWith("/index.json");
+  if (url.origin !== location.origin || url.pathname.startsWith("/api/"))
+    return;
+  const isShell =
+    req.mode === "navigate" || url.pathname.endsWith("/index.json");
   if (isShell) {
     event.respondWith(
       fetch(req)
@@ -32,7 +40,15 @@ self.addEventListener("fetch", (event) => {
           if (res.ok) caches.open(SHELL).then((c) => c.put(req, res.clone()));
           return res;
         })
-        .catch(() => caches.match(req).then((hit) => hit || caches.match(new URL("./", self.registration.scope).href))),
+        .catch(() =>
+          caches
+            .match(req)
+            .then(
+              (hit) =>
+                hit ||
+                caches.match(new URL("./", self.registration.scope).href),
+            ),
+        ),
     );
     return;
   }
@@ -43,8 +59,13 @@ self.addEventListener("fetch", (event) => {
         fetch(req).then((res) => {
           if (res.ok && res.type === "basic") {
             const copy = res.clone();
-            const name = /\/atlas\/(img|thumb|audio)\//.test(url.pathname) ? MEDIA : SHELL;
-            caches.open(name).then((c) => c.put(req, copy)).then(() => name === MEDIA && trim(MEDIA, 1500));
+            const name = /\/atlas\/(img|thumb|audio)\//.test(url.pathname)
+              ? MEDIA
+              : SHELL;
+            caches
+              .open(name)
+              .then((c) => c.put(req, copy))
+              .then(() => name === MEDIA && trim(MEDIA, 1500));
           }
           return res;
         }),

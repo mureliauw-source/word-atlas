@@ -21,11 +21,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TOP = {
     "README.md", "README.en.md", "LICENSE", "CONTENT_LICENSE.md", "CONTRIBUTING.md", "SECURITY.md",
-    ".gitignore", "package.json", "package-lock.json", "tsconfig.json", "vite.config.ts", "index.html",
+    ".gitignore", "package.json", "package-lock.json", "tsconfig.json", "tsconfig.server.json", "vite.config.ts", "index.html",
 }
 SCRIPTS = {"check-atlas.mjs", "render-cards.mjs", "record-demo.mjs", "package_public.py"}
 ATLAS_SCRIPTS = {"common.py", "gen_text.py", "gen_images.py", "gen_brand.py", "gen_word_audio.py", "gen_sentence_audio.py", "gen_sfx.py", "gen_galaxy_audio.sh", "fix_blocked.py", "build_atlas.py", "build_sfx.py"}
-TEXT = {".ts", ".tsx", ".css", ".svg", ".md", ".json", ".mjs", ".js", ".py", ".html", ".csv", ".yml", ".webmanifest", ""}
+TEXT = {".ts", ".tsx", ".css", ".svg", ".md", ".json", ".mjs", ".js", ".py", ".html", ".csv", ".yml", ".yaml", ".conf", ".example", ".webmanifest", ""}
 PATTERNS = {
     "API credential pattern": re.compile(rb"\b(?:sk[_-][A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{25,}|github_pat_[A-Za-z0-9_]{30,}|AKIA[A-Z0-9]{16}|xi-[A-Za-z0-9]{20,})\b"),
     "private home path": re.compile(rb"(?:/Users/|/home/)[A-Za-z0-9_.-]+/|[A-Za-z]:\\Users\\"),
@@ -39,12 +39,18 @@ PATTERNS = {
 def allowed(rel: Path) -> bool:
     p = rel.parts
     name = rel.as_posix()
-    if any(x in {".local", ".git", "node_modules", "dist", "output", "__pycache__", ".claude", ".playwright-cli"} or x.startswith(".env") for x in p):
+    if name == "deploy/.env.example":
+        return True
+    if any(x in {".local", ".data", ".git", "node_modules", "dist", "dist-server", "output", "__pycache__", ".claude", ".playwright-cli"} or x.startswith(".env") for x in p):
         return False
     if len(p) == 1:
         return name in TOP
     if p[0] == "src":
         return rel.suffix in {".ts", ".tsx", ".css", ".svg"}
+    if p[0] == "server":
+        return len(p) == 2 and rel.suffix == ".ts"
+    if p[0] == "deploy":
+        return name in {"deploy/compose.yaml", "deploy/nginx.conf"}
     if p[0] == "scripts":
         return (len(p) == 2 and p[1] in SCRIPTS) or (len(p) == 3 and p[1] == "atlas" and p[2] in ATLAS_SCRIPTS)
     if p[0] == "docs":
@@ -52,6 +58,8 @@ def allowed(rel: Path) -> bool:
     if p[0] == "data":
         return len(p) == 2 and p[1] in {"word-atlas.json", "word-atlas.csv", "README.md"}
     if name in {".github/workflows/check.yml", ".github/workflows/pages.yml"}:
+        return True
+    if name == ".github/PULL_REQUEST_TEMPLATE.md" or (len(p) == 3 and p[:2] == (".github", "ISSUE_TEMPLATE") and rel.suffix == ".md"):
         return True
     if p[0] == "public":
         inner = p[1:]

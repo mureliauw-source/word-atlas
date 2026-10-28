@@ -14,7 +14,7 @@ function localMedia(
   if (route === "/local/catalog.json") {
     const file = path.join(root, "catalog.json");
     if (!fs.existsSync(file)) {
-      res.statusCode = 404;
+      res.statusCode = 204;
       res.end();
       return;
     }
@@ -99,7 +99,12 @@ export default defineConfig({
       },
     },
   ],
-  server: { port: 5188, strictPort: true },
+  server: {
+    host: "127.0.0.1",
+    port: 5188,
+    strictPort: true,
+    proxy: { "/api": "http://127.0.0.1:3001" },
+  },
   preview: { port: 5188, strictPort: true },
   build: { chunkSizeWarningLimit: 600 },
 });

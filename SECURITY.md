@@ -1,19 +1,42 @@
 # 安全与隐私 / Security and privacy
 
-## 数据去哪里
+## 数据保存
 
-词光没有账号、服务器端存储、统计或追踪。学习进度只保存在当前浏览器的 localStorage，可以在「我的」里导出为 JSON 备份。导入备份时会逐字段校验，畸形数据会被丢弃。
+游客进度保存在当前浏览器。注册账号后，学习操作先写入本机草稿；
+只有用户点击“保存到账号”才提交完整快照到账号 API。
+账号、会话和已提交进度存储在部署者管理的 SQLite 数据库中。
+应用没有加入分析或追踪服务。
 
-Word Atlas has no accounts, server-side storage, analytics or tracking. Progress lives in the browser's localStorage and can be exported as JSON. Imported backups are validated field by field.
+Guest progress and account drafts are stored in the browser.
+Manual saves send the complete snapshot to the self-hosted account API.
+The deployment owner manages the SQLite account, session and progress data.
+This fork does not add analytics or tracking.
 
-## 凭据 / Credentials
+密码使用带随机盐的 scrypt 哈希，原密码不写入数据库。
+会话使用随机令牌，数据库保存令牌哈希；浏览器 Cookie 使用 HttpOnly 和 SameSite。
+公网部署应使用 HTTPS。允许来源和 Secure Cookie 的设置见
+[部署文档](docs/deployment.md)。
 
-网页运行不需要任何 API key。只有 `scripts/atlas/` 中的内容生成脚本需要调用模型服务，它们从环境变量（`SUB2_BASE_URL`、`SUB2_API_KEY`、`ELEVENLABS_API_KEY`）或仓库外的目录（`ATLAS_SECRETS`）读取凭据，不会写入仓库。
+手动保存使用版本检查和幂等操作编号，避免多端无提示覆盖及重复提交。
+内容按词库校验，账号只能读取和更新自己的数据。
+未保存草稿可能因清理站点数据而丢失，请先导出备份。
+数据库采用 WAL，运行中不能仅复制主数据库文件作为完整备份。
 
-- 不要使用 `VITE_*` 变量存放凭据，它们会被打包进浏览器代码。
-- 公开前运行 `npm run pack:public`，它会按白名单导出并扫描凭据和个人路径。扫描是辅助手段，不能替代人工检查。
-- 如果凭据意外泄露，请立刻在服务商处吊销或轮换。
+目前开放注册，暂不提供自助密码找回。
+本实例管理员邮箱为 [mure@qq.com](mailto:mure@qq.com)。
 
-## 报告问题 / Reporting
+## 凭据与发布
 
-发现安全问题请通过 GitHub 私密漏洞报告（Security → Report a vulnerability）联系维护者，不要公开贴出细节。
+网页运行不需要模型 API key。内容生成脚本从环境变量或仓库外目录读取凭据。
+不要把凭据放入 VITE_ 前缀变量，这些值会进入前端构建。
+数据库、登录会话、.env、生成文件和本地测试输出不得提交到仓库。
+仓库内的 deploy/.env.example 仅包含非敏感示例配置。
+
+公开导出脚本按白名单导出并扫描常见凭据格式。
+自动扫描只能辅助检查；发布前还应人工审阅提交差异。
+如果凭据泄露，应立刻在服务商处吊销或轮换。
+
+## 报告问题
+
+请通过 GitHub 私密漏洞报告或管理员邮箱反馈安全问题。
+不要在公开 Issue 中粘贴密码、Cookie、数据库文件或个人学习备份。

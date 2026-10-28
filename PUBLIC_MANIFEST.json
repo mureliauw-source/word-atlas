@@ -1,6 +1,6 @@
 {
-"files": 37725,
-"bytes": 712181554,
+"files": 37738,
+"bytes": 712296295,
 "items": [
 {
 "path": ".github/workflows/check.yml",
@@ -14,8 +14,8 @@
 },
 {
 "path": ".gitignore",
-"bytes": 109,
-"sha256": "dd45e2334f65b76cde5965f2beaeae9a949d830ef2825226defdecb1f6d4a690"
+"bytes": 236,
+"sha256": "0ef26decc54cd6554ee5b402ddb02f1488c4cf05c9da80c19067629b63716111"
 },
 {
 "path": "CONTENT_LICENSE.md",
@@ -24,8 +24,8 @@
 },
 {
 "path": "CONTRIBUTING.md",
-"bytes": 1154,
-"sha256": "f4452f429a58a73d5b0956b3f2246e944c8a70c9ba59a223b49308490db2f41f"
+"bytes": 1365,
+"sha256": "1f7e9784111729d31cc1aaac14e61bc3bc542d9aee17a37d9765ae4893dbc9b0"
 },
 {
 "path": "LICENSE",
@@ -34,18 +34,18 @@
 },
 {
 "path": "README.en.md",
-"bytes": 4436,
-"sha256": "1ab82133f602eeda1a3d916ff81e214881987cb6f66255239be736dcf8632e77"
+"bytes": 6045,
+"sha256": "cbc1e9b54fb149e5c03b1692938e79d4ffb1e55b6bf3ba2ed2ee35897052c36e"
 },
 {
 "path": "README.md",
-"bytes": 13146,
-"sha256": "7b794e05546cb86c3533144cf00847cc9f9bfa06b91742bca78973dd8a00d624"
+"bytes": 15360,
+"sha256": "b619e81e2d286bfe7b65cd3b184c765f9497f030d8d0baa8f774fd313cc78b93"
 },
 {
 "path": "SECURITY.md",
-"bytes": 1265,
-"sha256": "1d24fc68b5a9a73e1f8656029eed53d0b3145988c3fad85ae1286e9352676703"
+"bytes": 2112,
+"sha256": "0b6036083df88aa845c71cbf279936efe367279c0f72c2bcd0f5bf99318126e5"
 },
 {
 "path": "data/README.md",
@@ -61,6 +61,21 @@
 "path": "data/word-atlas.json",
 "bytes": 8099728,
 "sha256": "e4e3410809047711cd2a25fccafcebb46124ce1eeb98829dc12de0335de71234"
+},
+{
+"path": "deploy/.env.example",
+"bytes": 414,
+"sha256": "758fdcd73e610fa9186063acfe3f766ac16ac47399a34dd6598091183b890b1a"
+},
+{
+"path": "deploy/compose.yaml",
+"bytes": 1145,
+"sha256": "5298dc117658a7b3c91e5966f7546cc6268ab1b4cd4190e5aaa99c9befa3f115"
+},
+{
+"path": "deploy/nginx.conf",
+"bytes": 842,
+"sha256": "8d6d1c5143e53ca137ef0c77d56277e3c20f7d1c1f085c1e55e26aa840493673"
 },
 {
 "path": "docs/assets/atlas-desktop.jpg",
@@ -134,8 +149,8 @@
 },
 {
 "path": "docs/deployment.md",
-"bytes": 660,
-"sha256": "bc9ec9f17653b7395479a363ffdf54fc99aba3f348ebb13d7fe476f6d80f54c3"
+"bytes": 6518,
+"sha256": "4de276ad8ba78ca58dfb690674386afa48f4510925c289e34574b54de74faf7b"
 },
 {
 "path": "docs/learning-model.md",
@@ -154,13 +169,13 @@
 },
 {
 "path": "package-lock.json",
-"bytes": 80010,
-"sha256": "b94519eba93f82222563e3c2870fb004ebaf4bd02f73848f21ee9bcd0608190a"
+"bytes": 80125,
+"sha256": "ef875632ba619d8c40531bc794ae28bf0130e9730611593d69e257fb53c6c82d"
 },
 {
 "path": "package.json",
-"bytes": 1268,
-"sha256": "18117b24c6e70b0c4648fe2fbfbd460fa4e2dd9a1a8b899e818b91b23f6179c2"
+"bytes": 1626,
+"sha256": "3b500070701987f03b774baf9d73f6bd3e2145425c4954ba0d70bddbe9d65283"
 },
 {
 "path": "public/atlas/audio/ex/a-m.mp3",
@@ -188314,8 +188329,8 @@
 },
 {
 "path": "public/sw.js",
-"bytes": 1779,
-"sha256": "1d97e78f45fefbe335d1acea25322f143615cd3c194c44aba9db610f3bc273f9"
+"bytes": 2075,
+"sha256": "60e967b1e60e1504107e00aff06d73c9ad1de69b85e82fc9fbceb55701f43ca1"
 },
 {
 "path": "scripts/atlas/build_atlas.py",
@@ -188379,8 +188394,8 @@
 },
 {
 "path": "scripts/package_public.py",
-"bytes": 5846,
-"sha256": "23190deee96362f8e3531d7efce872698b06f29ce3e4255a42c4ba98ebc76101"
+"bytes": 6306,
+"sha256": "1697f00b50f9168bfbde1f7906516f0211b594af7240c30850b05096bc7ff5ff"
 },
 {
 "path": "scripts/record-demo.mjs",
@@ -188393,9 +188408,24 @@
 "sha256": "820c3b83c101cb43f788bdbc96b2b5e10cee70fa81537976e1cc3e1cc3fc5e51"
 },
 {
+"path": "server/app.test.ts",
+"bytes": 17551,
+"sha256": "f164ce904e38bd234971f5ea2e568db0cdea0c46c13c4756d53b50c7c2c65f4e"
+},
+{
+"path": "server/app.ts",
+"bytes": 22437,
+"sha256": "acba20800fd72b28a64ca1c214fa07a34f4239d1aae515729a67c517f35758d6"
+},
+{
+"path": "server/index.ts",
+"bytes": 562,
+"sha256": "d5aa8a55869e143f7e55bec7cd50d1c97f9fb939a7b3644e8203d0301e859c48"
+},
+{
 "path": "src/App.tsx",
-"bytes": 9100,
-"sha256": "70268891cb99d38ed6e348c1bd5e8be1bc3bcaf3c266ab78aadc429bb9e5202c"
+"bytes": 9837,
+"sha256": "b7f99d7982accdb48d03b5bf6e754ee57b768bcc9028e19c42417a5cd8954809"
 },
 {
 "path": "src/atlas/context.tsx",
@@ -188414,8 +188444,8 @@
 },
 {
 "path": "src/config.ts",
-"bytes": 119,
-"sha256": "e9fd3e36ea0073c36de0e482a732c7ae795181e6121fd1c92d988fff75c70405"
+"bytes": 123,
+"sha256": "da92d16a480a7f6fb3a65bb2e9891b5efa71446f5e2078f2dd282aa336e35d91"
 },
 {
 "path": "src/galaxy/Galaxy.tsx",
@@ -188446,6 +188476,16 @@
 "path": "src/lib/burst.ts",
 "bytes": 2266,
 "sha256": "aeb34bc44e524cf81a660351125a79f007e190c7d0707459f5c39102db925772"
+},
+{
+"path": "src/lib/id.test.ts",
+"bytes": 833,
+"sha256": "64f6939c83c80375017796aec8f85ba85fe9b92b4c6a7e2a38631ac6973ba23f"
+},
+{
+"path": "src/lib/id.ts",
+"bytes": 518,
+"sha256": "384acbd46b7a047ebb5eda9792bf943e7c19e5c031f001eb44fb6ce1fc9c72a0"
 },
 {
 "path": "src/lib/motion.ts",
@@ -188489,8 +188529,8 @@
 },
 {
 "path": "src/pages/About.tsx",
-"bytes": 4803,
-"sha256": "a1f87ab55dd24e6d4e27363f67de9f0923edae725a9770824d56b97ae271384c"
+"bytes": 5206,
+"sha256": "dc55ef07edc0b6251fe13b16fc335e54a4199213b198413a5b01b3072af0e65a"
 },
 {
 "path": "src/pages/Atlas.tsx",
@@ -188499,23 +188539,23 @@
 },
 {
 "path": "src/pages/Learn.tsx",
-"bytes": 18439,
-"sha256": "3ae94c2c44c30e05e76679f9157abdcd6c137c67e83e7b28fa25d7331f2437d5"
+"bytes": 20913,
+"sha256": "b7ffa9d7eb72d0f87b076df653f0dc4308029a6b7b90528ce17842f8a3be7a3f"
 },
 {
 "path": "src/pages/Me.tsx",
-"bytes": 10143,
-"sha256": "5b3de44eea842142d6d46a6ded95ee78094e8b39c76dd4a7b5b92d082a4d791f"
+"bytes": 12868,
+"sha256": "937d0c882f85f979dea0789bb64535ca554b4247e58969162e1ae50f85643e7e"
 },
 {
 "path": "src/pages/Onboarding.tsx",
-"bytes": 2403,
-"sha256": "b0c53c1b03200a3c560eea4f26ef4f89d955c12b739f2b749426c37bb5d0587b"
+"bytes": 2703,
+"sha256": "d6a73e3d6be126aeb7d23239f5bea7d2e39963a332be0e21415bc5643cacd777"
 },
 {
 "path": "src/pages/Practice.tsx",
-"bytes": 10545,
-"sha256": "a5aff41575f5bd16ec0e4b1ad0dda875622d9344351f8a7814d8ee05f46459cb"
+"bytes": 11739,
+"sha256": "17e4f73a414ce942f86e2743d823c51092779eeead33dbf7d68b5f5c2eabf3e4"
 },
 {
 "path": "src/pages/Today.tsx",
@@ -188523,9 +188563,24 @@
 "sha256": "0ea5052ba1383d1e49d6a3bb5658fea29946894c6ac74bf33df46a626f0bf8a0"
 },
 {
+"path": "src/shared/model.ts",
+"bytes": 6138,
+"sha256": "8e04d2313c0c8eee5ede7e5dcac33efd053a0ab1d4f2008e43cf7bad39bbaabf"
+},
+{
+"path": "src/shared/sync.ts",
+"bytes": 1060,
+"sha256": "77853c3ee3fc9158dc760c236e5da608a2741bd45cc892e244c03c8ef20c0863"
+},
+{
+"path": "src/store/manual.test.ts",
+"bytes": 11709,
+"sha256": "aa8c8caa546eeb6ab9c682bd98629dbfd273fb37c169435de761c272b39dd7ff"
+},
+{
 "path": "src/store/session.ts",
-"bytes": 7487,
-"sha256": "9112be02646dd0de44c4bf750046eddf33498741ea484bbb9a56f3ef9d9d72ff"
+"bytes": 8694,
+"sha256": "972c396373453aadc892dca83dfdc20623af68aa38559c0ef7628e02193d32d6"
 },
 {
 "path": "src/store/srs.test.ts",
@@ -188544,13 +188599,18 @@
 },
 {
 "path": "src/store/store.ts",
-"bytes": 10372,
-"sha256": "1ff96ed0972aad3e48216754eb8e10eaf3125280b2f50336001972265b56ee12"
+"bytes": 27239,
+"sha256": "b62f06feb0bc5b0e7e23a3f04376a8e0ad3c69cfef87f33b546870dd0bf2f905"
 },
 {
 "path": "src/styles/app.css",
-"bytes": 80532,
-"sha256": "1a0000cbf570620d1a4d5fcb8303e0327c65ef03b79a7184f329d397b275dc5c"
+"bytes": 83566,
+"sha256": "59795dad5c2c44cedfc1a713e8ad381bc4bbefc34b3a5d2bb202d9b7e107c289"
+},
+{
+"path": "src/ui/Account.tsx",
+"bytes": 10090,
+"sha256": "09294bb67aa6a63544b01b70b9512c30c9f650fa56cf565ca2592243644634c6"
 },
 {
 "path": "src/ui/Ambience.tsx",
@@ -188623,9 +188683,14 @@
 "sha256": "fe4ba23075674495119b0ffacde7119720417747b666640674e2ef4334091a02"
 },
 {
+"path": "tsconfig.server.json",
+"bytes": 320,
+"sha256": "dd195ef0ec46485debf7cc13d8051e579b61163a60e66abb964013dc0e29812b"
+},
+{
 "path": "vite.config.ts",
-"bytes": 3213,
-"sha256": "492d5478472ecabbfc402e26fcab368efa561ce1c975d4bb5519622e84430d8c"
+"bytes": 3295,
+"sha256": "1f3c83b57a7c465dbfe9cca8760fe8eb32dda58000e256d6d5c34bdaaed3e439"
 }
 ]
 }

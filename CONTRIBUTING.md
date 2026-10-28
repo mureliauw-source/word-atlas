@@ -13,9 +13,10 @@
 ## 代码
 
 - TypeScript 严格模式，React 函数组件，不引入状态管理或 UI 框架依赖。
-- 保持“无账号、本地优先、无追踪”的方向。
+- 保持“游客可用、本机草稿、账号手动保存、无追踪”的方向。
+- 账号相关改动须保留版本冲突检测、幂等重试及账号隔离，避免覆盖未保存草稿。
 - 视觉改动请同时检查浅色、深色和 375px 手机宽度。
-- 提交前运行 `npm test`、`npm run check:atlas`、`npm run build`。
+- 提交前运行 `npm test`、`npm run check:atlas`、`npm run build`、`npm run test:server`、`npm run check:server` 和 `npm run build:server`。
 
 ## 新素材
 
