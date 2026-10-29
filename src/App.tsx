@@ -157,7 +157,7 @@ function Shell({ privateAvailable }: { privateAvailable: boolean }) {
           <a
             className="topbar-logo"
             href="#/"
-            aria-label="词光 Word Atlas 首页"
+            aria-label="词光 Word Atlas 私享版 首页"
           >
             <Logo />
           </a>

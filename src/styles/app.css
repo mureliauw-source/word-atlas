@@ -624,6 +624,7 @@ code {
   display: flex;
   align-items: baseline;
   gap: 8px;
+  white-space: nowrap;
 }
 .logo-text b {
   font:
@@ -639,6 +640,11 @@ code {
   color: var(--ink-3);
   letter-spacing: 0.01em;
   font-variation-settings: "opsz" 24;
+}
+@media (max-width: 559px) {
+  .topbar .logo-english {
+    display: none;
+  }
 }
 .topnav {
   display: none;
