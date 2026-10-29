@@ -1,6 +1,6 @@
 {
 "files": 37738,
-"bytes": 712296295,
+"bytes": 712296587,
 "items": [
 {
 "path": ".github/workflows/check.yml",
@@ -188604,8 +188604,8 @@
 },
 {
 "path": "src/styles/app.css",
-"bytes": 83566,
-"sha256": "59795dad5c2c44cedfc1a713e8ad381bc4bbefc34b3a5d2bb202d9b7e107c289"
+"bytes": 83858,
+"sha256": "da466468d5bb408587ec4092edd1e90f3ec4ccffcc9768014ff097a069668279"
 },
 {
 "path": "src/ui/Account.tsx",
