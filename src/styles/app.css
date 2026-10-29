@@ -2416,6 +2416,18 @@ code {
   max-width: 440px;
   margin: 0 auto;
 }
+@media (min-width: 860px) {
+  .intro .entry-art {
+    /* Keep the label and illustration below the 64px learning toolbar. */
+    top: 76px;
+  }
+  .intro .entry-body {
+    padding-top: 44px;
+  }
+  .intro .entry-art .illo {
+    max-width: min(440px, calc(100dvh - 260px));
+  }
+}
 .learn-actions {
   position: sticky;
   bottom: 0;

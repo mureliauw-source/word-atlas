@@ -145,9 +145,6 @@ function Intro({ step }: { step: Step }) {
   if (!entry) return <span className="spinner" />;
   return (
     <div className="intro">
-      <p className="stage-label">
-        <span className="dot dot-new" /> 初次见面
-      </p>
       <EntryView entry={entry} mode="intro" />
       <footer className="learn-actions">
         <button className="btn btn-primary btn-xl" onClick={next} autoFocus>
@@ -227,6 +224,7 @@ function Quiz({
       void play(atlas.audio(entry, settings.accent), entry.w, settings.accent);
   }, [step.kind, entry, atlas, settings.accent, pending]);
 
+  const canReplayWithSpace = step.kind === "meaning" || step.kind === "listen";
   const keys: Record<string, () => void> = {};
   if (pending) {
     keys.Enter = next;
@@ -235,8 +233,13 @@ function Quiz({
     options.forEach(
       (o, i) => (keys[String(i + 1)] = () => submit(o.id, o.id === ref.id)),
     );
+    if (canReplayWithSpace && entry) {
+      keys[" "] = () => {
+        void play(atlas.audio(entry, settings.accent), entry.w, settings.accent);
+      };
+    }
   }
-  useKeys(keys);
+  useKeys(keys, { captureSpaceOnButtons: canReplayWithSpace && !pending });
 
   if (!entry) return <span className="spinner" />;
   const sentence = entry.ex[0] ? gap(entry.ex[0].en, entry.w) : null;
@@ -701,17 +704,24 @@ function Summary({ session }: { session: ActiveSession }) {
 }
 
 /** Page-level shortcuts that ignore typing in inputs (except Enter, which forms handle). */
-export function useKeys(map: Record<string, () => void>) {
+export function useKeys(
+  map: Record<string, () => void>,
+  { captureSpaceOnButtons = false }: { captureSpaceOnButtons?: boolean } = {},
+) {
   const ref = useRef(map);
   ref.current = map;
   useEffect(() => {
     const on = (e: KeyboardEvent) => {
-      if (e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
+      if (e.metaKey || e.ctrlKey || e.altKey || e.repeat || e.isComposing) return;
       const t = e.target as HTMLElement;
-      const typing = t.tagName === "INPUT" || t.tagName === "TEXTAREA";
+      const typing =
+        t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable;
       if (typing && !(e.key === "Enter" && (t as HTMLInputElement).readOnly))
         return;
-      if (t.tagName === "BUTTON" && (e.key === "Enter" || e.key === " "))
+      if (
+        t.tagName === "BUTTON" &&
+        (e.key === "Enter" || (e.key === " " && !captureSpaceOnButtons))
+      )
         return;
       const fn = ref.current[e.key];
       if (fn) {
@@ -721,5 +731,5 @@ export function useKeys(map: Record<string, () => void>) {
     };
     window.addEventListener("keydown", on);
     return () => window.removeEventListener("keydown", on);
-  }, []);
+  }, [captureSpaceOnButtons]);
 }

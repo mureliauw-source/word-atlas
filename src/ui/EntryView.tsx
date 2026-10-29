@@ -69,6 +69,11 @@ export function EntryView({ entry, mode = "detail", eager = true }: { entry: Ent
   return (
     <article className={`entry entry-${mode}`}>
       <div className="entry-art">
+        {mode === "intro" && (
+          <p className="stage-label">
+            <span className="dot dot-new" /> 初次见面
+          </p>
+        )}
         <Illustration src={atlas.img(entry)} word={entry.w} topic={topicIdx} eager={eager} alt={`${entry.w} 插画`} />
       </div>
       <div className="entry-body">

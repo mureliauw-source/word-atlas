@@ -90,6 +90,12 @@ export function About() {
             </div>
             <div>
               <dt>
+                <kbd>Space</kbd>
+              </dt>
+              <dd>看词选释义、听音辨词题作答前，播放一次单词发音</dd>
+            </div>
+            <div>
+              <dt>
                 <kbd>←</kbd> <kbd>→</kbd>
               </dt>
               <dd>词卡里切换上一个、下一个</dd>
