@@ -247,6 +247,12 @@ b2_environment = [w for w in words if w["cefr"] == "B2" and w["topic"] == "envir
 
 ---
 
-原项目由 [@designfuchen](https://github.com/designfuchen) 制作。本复刻版由 [@mureliauw-source](https://github.com/mureliauw-source) 维护账号、手动保存与自托管相关改造。原作者动态见 [X · @yangleiocx3](https://x.com/yangleiocx3)。
+本版本由 [@mureliauw-source](https://github.com/mureliauw-source) 进行维护，并增加：
+
+1. 增加账号管理、手动保存与自托管相关改造；
+2. 同步支持云端进度存储；
+3. 修正了原项目中的多个bug缺陷。
+
+原项目由 [@designfuchen](https://github.com/designfuchen) 制作。原作者动态见 [X · @yangleiocx3](https://x.com/yangleiocx3)。
 
 如果词光对你有用，欢迎 Star，或把它分享给正在学英语的朋友。
